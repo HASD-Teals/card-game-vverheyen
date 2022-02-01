@@ -5,6 +5,12 @@ public class Deck {
         private int number;
         private boolean ace;
 
+    private void makeDeck() {
+
+    }
+
+    //NEED TO DO 12-14 THEN 18
+
     // DEFAULT CONSTRUCTOR
     public Deck() {
         Card[] deck = new Card[52];
@@ -38,8 +44,15 @@ public class Deck {
     }
     
     // METHODS
-    public void shuffleCards() {
-        // Shuffle this.cards in a random order
+    public void shuffleCards(Card[] cards) {
+        Card a;
+        int length=cards.length-1;
+        for (int i=0;i<length;i++) {
+            int random = (int)(Math.random() * (length-0) + 0);
+            a=cards[i];
+            cards[i]=cards[random];
+            cards[random]=a;
+        }
     }
 
     public void compare(Card card1, Card card2) {
