@@ -6,59 +6,62 @@ public class Deck {
     private boolean ace;
 
     private void makeDeck() {
-
+        Card[] deck = new Card[suits*number];
+        for (int i=0; i<suits*number-1;i++) {
+            deck[i]= new Card();
+        }
+        for (int i=1; i<suits; i++) {
+            for (int j=1; j<number; j++) {
+                deck[(i*number)+j-number].setValue(j);           
+                if ((i*number)+j<number+1) {
+                    deck[(i*number)+j-number].setSymbol('♥');
+                    deck[(i*number)+j-number].setColor("Red");
+                }
+                if ((i*number)+j-number>number && (i*number)+j-number<(number*2)+1) {
+                    deck[(i*number)+j-number].setSymbol('♦');
+                    deck[(i*number)+j-number].setColor("Red");
+                }
+                if ((i*number)+j-number>number*2 && (i*number)+j-number<(number*3)+1) {
+                    deck[(i*number)+j-number].setSymbol('♠');
+                    deck[(i*number)+j-number].setColor("Black");
+                }
+                if ((i*number)+j-number>number*3) {
+                    deck[(i*number)+j-number].setSymbol('♣');
+                    deck[(i*number)+j-number].setColor("Black");
+                }
+                if (j==11) {
+                    deck[(i*number)+j-number].setRank("Jack");
+                    deck[(i*number)+j-number].setValue(11);
+                }
+                if (j==12) {
+                    deck[(i*number)+j-number].setRank("Queen");
+                    deck[(i*number)+j-number].setValue(12);
+                }
+                if (j==13) {
+                    deck[(i*number)+j-number].setRank("King");
+                    deck[(i*number)+j-number].setValue(13);
+                }
+                if (j==1) {
+                    deck[(i*number)+j-number].setRank("Ace");
+                }
+                if (ace==true && j==1) {
+                    deck[(i*number)+j-number].setValue(14);
+                }
+            }
+        }
     }
 
     // DEFAULT CONSTRUCTOR
     public Deck() {
-        Card[] deck = new Card[52];
         this.suits = 4;
         this.number = 13;
         this.ace = false;
-            for (int i=1; i<suits; i++) {
-                for (int j=1; j<number; j++) {
-                    deck[(i*number)+j-number].setValue(j);           //ERROR WITH NULL?? IN deck[...]
-                    if ((i*number)+j<number+1) {
-                        deck[(i*number)+j].setSymbol('♥');
-                        deck[(i*number)+j].setColor("Red");
-                    }
-                    if ((i*number)+j-number>number && (i*number)+j-number<(number*2)+1) {
-                        deck[(i*number)+j].setSymbol('♦');
-                        deck[(i*number)+j].setColor("Red");
-                    }
-                    if ((i*number)+j-number>number*2 && (i*number)+j-number<(number*3)+1) {
-                        deck[(i*number)+j].setSymbol('♠');
-                        deck[(i*number)+j].setColor("Black");
-                    }
-                    if ((i*number)+j-number>number*3) {
-                        deck[(i*number)+j].setSymbol('♣');
-                        deck[(i*number)+j].setColor("Black");
-                    }
-                    if (j==11) {
-                        deck[(i*number)+j].setRank("Jack");
-                    }
-                    if (j==12) {
-                        deck[(i*number)+j].setRank("Queen");
-                    }
-                    if (j==13) {
-                        deck[(i*number)+j].setRank("King");
-                    }
-                }
-            }
+        makeDeck();
     }
 
     // OVERRIDE CONSTRUCTOR
     public Deck(int suits, int number, boolean ace) {
-        Card[] deck = new Card[suits * number];
-        this.suits = suits;
-        this.number = number;
-        this.ace = ace;
-            for (int i=0; i<suits-1; i++) {
-                for (int j=1; j<number; j++) {
-                    deck[(i*number)+j].setValue(j);
-                }
-            }
-
+        makeDeck();
     }
 
     // ACCESSORS
@@ -97,6 +100,15 @@ public class Deck {
         } else {
             System.out.println("The cards are not equal");
         }
+    }
+    //Still neeed to fix bc previous thing using this.cards still didn't work
+    public String toString() {
+        String temp= "";
+        for (int i=0; ; i++) {
+            temp+= Deck.toString();     
+            temp+= "\n";  
+        }
+        return temp;                  
     }
 
 }
