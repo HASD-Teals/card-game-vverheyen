@@ -7,7 +7,7 @@ public class Deck {
 
     private void makeDeck() {
         Card[] deck = new Card[suits*number];
-        for (int i=0; i<suits*number-1;i++) {
+        for (int i=0; i<suits*number;i++) {
             deck[i]= new Card();
         }
         for (int i=0; i<suits; i++) {
@@ -75,8 +75,9 @@ public class Deck {
         return this.cards;
     }
 
-    public Card getCardAt(Card[] deck, int x) {
-        return deck[x];
+    // Don't need to pass a deck as a parameter. You should use this.cards
+    public Card getCardAt(/*Card[] deck,*/ int x) {
+        return this.cards[x];
     }
 
     public int numberofCards(Card[] card) {
@@ -100,13 +101,17 @@ public class Deck {
         }
     }
 
+    /**
+     * If you are comparing 2 cards, this method should be in the Card class.
+     */
     public void compare(Deck[] card1, Deck[] card2) {
-        if (card1.getValue() == card2.getValue()) {
-            System.out.println("The cards are equal");
-        } else {
-            System.out.println("The cards are not equal");
-        }
+        // if (card1.getValue() == card2.getValue()) {
+        //     System.out.println("The cards are equal");
+        // } else {
+        //     System.out.println("The cards are not equal");
+        // }
     }
+
     public String toString() {
         String temp= "";
         for (int i=0;i<this.cards.length; i++) {
